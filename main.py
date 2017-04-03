@@ -1,7 +1,7 @@
 import argparse
 from chainer import optimizers
 import vgg
-import amaz_trainer
+import amaz_trainer_batchInbatch
 import amaz_cifar10_dl
 import amaz_augumentationCustom
 import amaz_optimizer
@@ -13,7 +13,7 @@ if __name__ == '__main__':
                         default=300,
                         help='maximum epoch')
     parser.add_argument('--batch', '-b', type=int,
-                        default=64,
+                        default=256,
                         help='mini batch number')
     parser.add_argument('--gpu', '-g', type=int,
                         default=-1,
@@ -34,5 +34,5 @@ if __name__ == '__main__':
     args['optimizer'] = optimizer
     args['dataset'] = dataset
     args['dataaugumentation'] = dataaugumentation
-    main = amaz_trainer.Trainer(**args)
+    main = amaz_trainer_batchInbatch.Trainer(**args)
     main.run()
