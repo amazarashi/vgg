@@ -19,7 +19,7 @@ class Optimizers(object):
 
 class OptimizerVGG(Optimizers):
 
-    def __init__(self,model=None,lr=0.01,momentum=0.9,epoch=300,schedule=(100,200),weight_decay=5.0e-4):
+    def __init__(self,model=None,lr=0.1,momentum=0.9,epoch=300,schedule=(50,68),weight_decay=5.0e-4):
         super(OptimizerVGG,self).__init__(model,epoch)
         self.lr = lr
         self.optimizer = optimizers.MomentumSGD(self.lr,momentum)
