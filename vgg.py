@@ -112,6 +112,9 @@ class VGG_A(chainer.Chain):
         h = F.relu(self.fc2(h))
         h = F.dropout(h,ratio=0.5,train=train)
         h = F.relu(self.fc3(h))
+        num, categories, y, x = h.data.shape
+        # global average pooling
+        h = F.reshape(F.average_pooling_2d(h, (y, x)), (num, categories))
         return h
 
     def calc_loss(self,y,t):
