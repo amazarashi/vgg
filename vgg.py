@@ -100,11 +100,11 @@ class VGG_A(chainer.Chain):
         h = F.relu(self.conv2_1(h))
         h = F.max_pooling_2d(h,2,stride=2,pad=1)
 
-        h = F.relu(self.conv3_1(x))
+        h = F.relu(self.conv3_1(h))
         h = F.relu(self.conv3_2(h))
         h = F.max_pooling_2d(h,2,stride=2,pad=1)
 
-        h = F.relu(self.conv4_1(x))
+        h = F.relu(self.conv4_1(h))
         h = F.relu(self.conv4_2(h))
         h = F.max_pooling_2d(h,2,stride=2,pad=1)
 
