@@ -5,6 +5,7 @@ from chainer import cuda
 import chainer.functions as F
 from chainer import optimizers
 import time
+import six
 
 import amaz_sampling
 import amaz_util
