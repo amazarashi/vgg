@@ -24,39 +24,36 @@ class VGG(chainer.Chain):
             conv4_4 = L.Convolution2D(512,512,3,1,1,initialW=initializer),
             fc1 = L.Linear(25088,4096),
             fc2 = L.Linear(4096,4096),
-            fc3 = L.Linear(4096,1000),
-            fc4 = L.Linear(1000,10),
+            fc3 = L.Linear(4096,category_num),
         )
 
     def __call__(self,x,train=True):
         #x = chainer.Variable(x)
         h = F.relu(self.conv1_1(x))
         h = F.relu(self.conv1_2(h))
-        h = F.max_pooling_2d(h,2,stride=2,pad=1)
+        h = F.max_pooling_2d(h,2,stride=2,pad=0)
 
         h = F.relu(self.conv2_1(h))
         h = F.relu(self.conv2_2(h))
-        h = F.max_pooling_2d(h,2,stride=2,pad=1)
+        h = F.max_pooling_2d(h,2,stride=2,pad=0)
 
-        h = F.relu(self.conv3_1(x))
+        h = F.relu(self.conv3_1(h))
         h = F.relu(self.conv3_2(h))
-        h = F.relu(self.conv3_3(x))
+        h = F.relu(self.conv3_3(h))
         h = F.relu(self.conv3_4(h))
-        h = F.max_pooling_2d(h,2,stride=2,pad=1)
+        h = F.max_pooling_2d(h,2,stride=2,pad=0)
 
-        h = F.relu(self.conv4_1(x))
+        h = F.relu(self.conv4_1(h))
         h = F.relu(self.conv4_2(h))
-        h = F.relu(self.conv4_3(x))
+        h = F.relu(self.conv4_3(h))
         h = F.relu(self.conv4_4(h))
-        h = F.max_pooling_2d(h,2,stride=2,pad=1)
+        h = F.max_pooling_2d(h,2,stride=2,pad=0)
 
-        h = F.relu(self.fc1)
+        h = F.relu(self.fc1(h))
         h = F.dropout(h,ratio=0.5,train=train)
-        h = F.relu(self.fc2)
+        h = F.relu(self.fc2(h))
         h = F.dropout(h,ratio=0.5,train=train)
-        h = F.relu(self.fc3)
-        h = F.dropout(h,ratio=0.5,train=train)
-        h = F.relu(self.fc4)
+        h = F.relu(self.fc3(h))
         return h
 
     def calc_loss(self,y,t):
@@ -86,10 +83,12 @@ class VGG_A(chainer.Chain):
             conv3_2 = L.Convolution2D(256,256,3,1,1,initialW=initializer),
             conv4_1 = L.Convolution2D(256,512,3,1,1,initialW=initializer),
             conv4_2 = L.Convolution2D(512,512,3,1,1,initialW=initializer),
-            fc1 = L.Linear(100352,4096),
-            fc2 = L.Linear(4096,4096),
-            fc3 = L.Linear(4096,1000),
-            fc4 = L.Linear(1000,10),
+            fc1 = L.Convolution2D(512,4096,7,1,1,initialW=initializer),
+            fc2 = L.Convolution2D(4096,4096,1,1,1,initialW=initializer),
+            fc3 = L.Convolution2D(4096,category_num,1,1,1,initialW=initializer),
+            # fc1 = L.Linear(100352,4096),
+            # fc2 = L.Linear(4096,4096),
+            # fc3 = L.Linear(4096,category_num),
         )
 
     def __call__(self,x,train=True):
@@ -113,8 +112,6 @@ class VGG_A(chainer.Chain):
         h = F.relu(self.fc2(h))
         h = F.dropout(h,ratio=0.5,train=train)
         h = F.relu(self.fc3(h))
-        h = F.dropout(h,ratio=0.5,train=train)
-        h = F.relu(self.fc4(h))
         return h
 
     def calc_loss(self,y,t):
