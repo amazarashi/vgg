@@ -95,18 +95,18 @@ class VGG_A(chainer.Chain):
     def __call__(self,x,train=True):
         #x = chainer.Variable(x)
         h = F.relu(self.conv1_1(x))
-        h = F.max_pooling_2d(h,2,stride=2,pad=1)
+        h = F.max_pooling_2d(h,2,stride=2,pad=0)
 
         h = F.relu(self.conv2_1(h))
-        h = F.max_pooling_2d(h,2,stride=2,pad=1)
+        h = F.max_pooling_2d(h,2,stride=2,pad=0)
 
         h = F.relu(self.conv3_1(h))
         h = F.relu(self.conv3_2(h))
-        h = F.max_pooling_2d(h,2,stride=2,pad=1)
+        h = F.max_pooling_2d(h,2,stride=2,pad=0)
 
         h = F.relu(self.conv4_1(h))
         h = F.relu(self.conv4_2(h))
-        h = F.max_pooling_2d(h,2,stride=2,pad=1)
+        h = F.max_pooling_2d(h,2,stride=2,pad=0)
 
         h = F.relu(self.fc1(h))
         h = F.dropout(h,ratio=0.5,train=train)
