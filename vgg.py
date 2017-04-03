@@ -108,13 +108,13 @@ class VGG_A(chainer.Chain):
         h = F.relu(self.conv4_2(h))
         h = F.max_pooling_2d(h,2,stride=2,pad=1)
 
-        h = F.relu(self.fc1)
+        h = F.relu(self.fc1(h))
         h = F.dropout(h,ratio=0.5,train=train)
-        h = F.relu(self.fc2)
+        h = F.relu(self.fc2(h))
         h = F.dropout(h,ratio=0.5,train=train)
-        h = F.relu(self.fc3)
+        h = F.relu(self.fc3(h))
         h = F.dropout(h,ratio=0.5,train=train)
-        h = F.relu(self.fc4)
+        h = F.relu(self.fc4(h))
         return h
 
     def calc_loss(self,y,t):
