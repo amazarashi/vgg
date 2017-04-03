@@ -110,8 +110,8 @@ class Trainer(object):
         batch_in_batch_size = 16
         progress = self.utility.create_progressbar(int(len(test_x)),desc='test',stride=batch_in_batch_size)
         for i in progress:
-            x = train_x[i:i + batch_in_batch_size]
-            t = train_y[i:i + batch_in_batch_size]
+            x = test_x[i:i + batch_in_batch_size]
+            t = test_y[i:i + batch_in_batch_size]
 
             DaX = []
             for img in x:
