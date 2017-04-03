@@ -72,7 +72,7 @@ class Trainer(object):
         batch_in_batch_size = 16
         for i,indices in zip(progress,train_data_yeilder):
             model.cleargrads()
-            for ii in six.moves.range(0, len(indices), batch_of_batch):
+            for ii in six.moves.range(0, len(indices), batch_in_batch_size):
                 x = train_x[indices[ii:ii + batch_in_batch_size]]
                 t = train_y[indices[ii:ii + batch_in_batch_size]]
 
