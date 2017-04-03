@@ -81,10 +81,10 @@ class VGG_A(chainer.Chain):
         initializer = chainer.initializers.HeNormal()
         super(VGG_A,self).__init__(
             conv1_1 = L.Convolution2D(3,64,3,1,1,initialW=initializer),
-            conv2_1 = L.Convolution2D(128,128,3,1,1,initialW=initializer),
-            conv3_1 = L.Convolution2D(256,256,3,1,1,initialW=initializer),
+            conv2_1 = L.Convolution2D(64,128,3,1,1,initialW=initializer),
+            conv3_1 = L.Convolution2D(128,256,3,1,1,initialW=initializer),
             conv3_2 = L.Convolution2D(256,256,3,1,1,initialW=initializer),
-            conv4_1 = L.Convolution2D(512,512,3,1,1,initialW=initializer),
+            conv4_1 = L.Convolution2D(256,512,3,1,1,initialW=initializer),
             conv4_2 = L.Convolution2D(512,512,3,1,1,initialW=initializer),
             fc1 = L.Linear(25088,4096),
             fc2 = L.Linear(4096,4096),

@@ -8,7 +8,8 @@ VggNet by chainer
 
 # Model
 
-VGG-E(19 weight layers)
+- VGG-A(11 weight layers)
+- VGG-E(19 weight layers)
 
 # How to run
 
