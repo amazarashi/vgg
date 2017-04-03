@@ -26,7 +26,7 @@ if __name__ == '__main__':
     lr = args.pop('lr')
     epoch = args.pop('epoch')
 
-    model = vgg.VGG(10)
+    model = vgg.VGG_A(10)
     optimizer = amaz_optimizer.OptimizerVGG(model,lr=lr,epoch=epoch)
     dataset = amaz_cifar10_dl.Cifar10().loader()
     dataaugumentation = amaz_augumentationCustom.Normalize224
