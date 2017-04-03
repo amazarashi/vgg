@@ -83,9 +83,9 @@ class VGG_A(chainer.Chain):
             conv1_1 = L.Convolution2D(3,64,3,1,1,initialW=initializer),
             conv2_1 = L.Convolution2D(64,128,3,1,1,initialW=initializer),
             conv3_1 = L.Convolution2D(128,256,3,1,1,initialW=initializer),
-            conv3_2 = L.Convolution2D(256,256,3,1,1,initialW=initializer),
+            #conv3_2 = L.Convolution2D(256,256,3,1,1,initialW=initializer),
             conv4_1 = L.Convolution2D(256,512,3,1,1,initialW=initializer),
-            conv4_2 = L.Convolution2D(512,512,3,1,1,initialW=initializer),
+            #conv4_2 = L.Convolution2D(512,512,3,1,1,initialW=initializer),
             fc1 = L.Linear(131072,4096),
             fc2 = L.Linear(4096,4096),
             fc3 = L.Linear(4096,1000),
@@ -101,11 +101,11 @@ class VGG_A(chainer.Chain):
         h = F.max_pooling_2d(h,2,stride=2,pad=0)
 
         h = F.relu(self.conv3_1(h))
-        h = F.relu(self.conv3_2(h))
+        #h = F.relu(self.conv3_2(h))
         h = F.max_pooling_2d(h,2,stride=2,pad=0)
 
         h = F.relu(self.conv4_1(h))
-        h = F.relu(self.conv4_2(h))
+        #h = F.relu(self.conv4_2(h))
         h = F.max_pooling_2d(h,2,stride=2,pad=0)
 
         h = F.relu(self.fc1(h))
