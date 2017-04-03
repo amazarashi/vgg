@@ -88,7 +88,7 @@ class Trainer(object):
                 loss = model.calc_loss(y,t) / batch_in_batch_size
                 loss.backward()
                 loss.to_cpu()
-                sum_loss += loss.data * batch_of_batch
+                sum_loss += loss.data * batch_in_batch_size
                 del loss,x,t
             optimizer.update()
 
@@ -124,7 +124,7 @@ class Trainer(object):
             y = model(x,train=False)
             loss = model.calc_loss(y,t)
             sum_loss += batch * loss.data
-            sum_accuracy += F.accuracy(y,t).data * batch
+            sum_accuracy += F.accuracy(y,t).data * batch_in_batch_size
             categorical_accuracy = model.accuracy_of_each_category(y,t)
             del loss,x,t
 
