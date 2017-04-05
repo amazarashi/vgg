@@ -35,5 +35,5 @@ class OptimizerVGG(Optimizers):
         #     print("optimizer was changed to {0}..".format(new_lr))
         if current_epoch % 2 == 0:
             lr = self.lr * 0.94
-            print('lr is changed: {} -> {}'.format(self.optimizer.lr, lr))
-            self.optimizer.lr = lr
+            print('lr is changed: {} -> {}'.format(self.lr, lr))
+            self.lr = lr
