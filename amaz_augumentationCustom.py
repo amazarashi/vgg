@@ -94,7 +94,7 @@ class Normalize224(object):
         return res
 
 
-class Normalize324(object):
+class NormalizeRandomVgg(object):
     @staticmethod
     def train(X):
         randval = random.randint(299,512)
@@ -109,7 +109,7 @@ class Normalize324(object):
     @staticmethod
     def test(X):
         res = augumentation.convert_to_imgAry(X)
-        res = augumentation.resize(res,(224,224))
+        res = augumentation.resize(res,(384,384))
         res = augumentation.normalize(res,value=10.)
         res = augumentation.convert_to_chainerVariable(res)
         return res
