@@ -49,8 +49,8 @@ class Trainer(object):
         return False
 
     def init_dataset(self):
-        train_x = self.dataset["train_x"][:100]
-        train_y = self.dataset["train_y"][:100]
+        train_x = self.dataset["train_x"]
+        train_y = self.dataset["train_y"]
         test_x = self.dataset["test_x"]
         test_y = self.dataset["test_y"]
         meta = self.dataset["meta"]
@@ -81,8 +81,8 @@ class Trainer(object):
                     da_x = self.dataaugumentation.train(img)
                     DaX.append(da_x)
 
-                x = self.datashaping.prepareinput(DaX,dtype=np.float32)
-                t = self.datashaping.prepareinput(t,dtype=np.int32)
+                x = self.datashaping.prepareinput(DaX,dtype=np.float32,volatile=False)
+                t = self.datashaping.prepareinput(t,dtype=np.int32,volatile=False)
 
                 y = model(x,train=True)
                 loss = model.calc_loss(y,t) / batch_in_batch_size
@@ -118,8 +118,8 @@ class Trainer(object):
                 da_x = self.dataaugumentation.test(img)
                 DaX.append(da_x)
 
-            x = self.datashaping.prepareinput(DaX,dtype=np.float32)
-            t = self.datashaping.prepareinput(t,dtype=np.int32)
+            x = self.datashaping.prepareinput(DaX,dtype=np.float32,volatile=True)
+            t = self.datashaping.prepareinput(t,dtype=np.int32,volatile=True)
 
             y = model(x,train=False)
             loss = model.calc_loss(y,t)
