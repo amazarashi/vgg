@@ -51,8 +51,8 @@ class Trainer(object):
     def init_dataset(self):
         train_x = self.dataset["train_x"][:100]
         train_y = self.dataset["train_y"][:100]
-        test_x = self.dataset["test_x"][:100]
-        test_y = self.dataset["test_y"][:100]
+        test_x = self.dataset["test_x"]
+        test_y = self.dataset["test_y"]
         meta = self.dataset["meta"]
         return (train_x,train_y,test_x,test_y,meta)
 

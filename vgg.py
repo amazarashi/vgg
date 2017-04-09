@@ -83,7 +83,7 @@ class VGG_A(chainer.Chain):
             conv3_2 = L.Convolution2D(256,256,3,1,1,initialW=initializer),
             conv4_1 = L.Convolution2D(256,512,3,1,1,initialW=initializer),
             conv4_2 = L.Convolution2D(512,512,3,1,1,initialW=initializer),
-            fc1 = L.Convolution2D(512,4096,7,1,1,initialW=initializer),
+            fc1 = L.Convolution2D(512,4096,1,1,1,initialW=initializer),
             fc2 = L.Convolution2D(4096,4096,1,1,1,initialW=initializer),
             fc3 = L.Convolution2D(4096,category_num,1,1,1,initialW=initializer),
             # fc1 = L.Linear(100352,4096),
