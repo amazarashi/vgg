@@ -97,8 +97,9 @@ class Normalize224(object):
 class Normalize324(object):
     @staticmethod
     def train(X):
+        randval = random.randint(256,512)
         res = augumentation.convert_to_imgAry(X)
-        res = augumentation.resize(res,(324,328))
+        res = augumentation.resize(res,(randval,randval+4))
         res = augumentation.crop_random(res,(224,224))
         res = augumentation.normalize(res,value=10.)
         res = augumentation.flip_horizontal(res,0.5)
