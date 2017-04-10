@@ -99,7 +99,7 @@ class NormalizeRandomVgg(object):
     def train(X):
         randval = random.randint(299,512)
         res = augumentation.convert_to_imgAry(X)
-        res = augumentation.resize(res,(randval,randval+4))
+        res = augumentation.resize(res,(randval,randval))
         res = augumentation.crop_random(res,(224,224))
         res = augumentation.normalize(res,value=10.)
         res = augumentation.flip_horizontal(res,0.5)

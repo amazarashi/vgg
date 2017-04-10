@@ -31,7 +31,7 @@ class Tester(object):
     def executeOne(self,x):
         x = amaz_augumentation.Augumentation().Z_score(x)
         da_x = self.dataaugumentation.test(x)
-        xin = self.datashaping.prepareinput([da_x],dtype=np.float32)
+        xin = self.datashaping.prepareinput([da_x],dtype=np.float32,volatile=True)
         y = self.model(xin,train=False)
         res = {}
         score_of_each = list(y.data)
