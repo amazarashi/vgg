@@ -26,4 +26,6 @@ Cifar10 [(link)](https://www.cs.toronto.edu/~kriz/cifar.html)
 
 ### Result
 
-coming soon..
+!["accuracy"](https://github.com/amazarashi/vgg/blob/develop/result/accuracy.png)
+
+!["loss"](https://github.com/amazarashi/vgg/blob/develop/result/loss.png)
